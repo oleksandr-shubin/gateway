@@ -16,6 +16,18 @@
                                 Companies
                             </a>
                         </router-link>
+                        <router-link to="/transfers" tag="li" class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-exchange-alt"></i>
+                                Transfers
+                            </a>
+                        </router-link>
+                        <router-link to="/abusers" tag="li" class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Abusers
+                            </a>
+                        </router-link>
                     </ul>
                 </div>
             </nav>

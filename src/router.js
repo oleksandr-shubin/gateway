@@ -6,6 +6,8 @@ import UsersEdit from './views/User/Edit.vue';
 import Companies from './views/Company/Index.vue';
 import CompaniesCreate from './views/Company/Create.vue';
 import CompaniesEdit from './views/Company/Edit.vue';
+import Abusers from './views/Abuser/Index.vue';
+import Transfers from './views/Transfer/Index.vue';
 
 Vue.use(Router);
 
@@ -47,6 +49,18 @@ export default new Router({
             path: '/companies/edit/:id',
             name: 'companies-edit',
             component: CompaniesEdit,
+        },
+
+        {
+            path: '/transfers',
+            name: 'transfers',
+            component: Transfers,
+        },
+
+        {
+            path: '/abusers',
+            name: 'abusers',
+            component: Abusers,
         },
     ]
 })
