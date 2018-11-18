@@ -10,7 +10,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-if="companies.length" v-for="company in companies">
+                <tr v-if="isNotEmpty()" v-for="company in paginator.data" :key="company.id">
                     <td>{{ company.name }}</td>
                     <td>
                         <div class="dropdown">
@@ -29,9 +29,10 @@
                         </div>
                     </td>
                 </tr>
-                <empty-row v-if="!companies.length" :colspan="3"></empty-row>
+                <empty-row v-if="isEmpty()" :colspan="3"></empty-row>
                 </tbody>
             </table>
+            <pagination :limit="2" :show-disabled="true" :data="paginator" @pagination-change-page="index"></pagination>
         </div>
         <router-link :to="{name: 'companies-create'}" tag="button" class="btn btn-success">
             Add
@@ -43,32 +44,27 @@
     import companyApi from '../../api/company';
     import DeletesModel from '../../mixins/DeletesModel';
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
+    import Paginable from "../../mixins/Paginable";
 
     export default {
-        mixins: [DeletesModel, NotifiesSuccess],
-
-        data() {
-            return {
-                companies: [],
-            };
-        },
+        mixins: [DeletesModel, NotifiesSuccess, Paginable],
 
         created() {
             this.index();
         },
 
         methods: {
-            index() {
+            index(page = 1) {
                 companyApi
-                    .index()
-                    .then(({data}) => this.companies = data.data);
+                    .index(page)
+                    .then(({data}) => this.paginator = data);
             },
 
             destroy(company) {
                 companyApi
                     .destroy(company)
                     .then(() => {
-                        this.index();
+                        this.index(this.findPageAfterDeletion());
                         this.notifySuccess();
                     });
             },

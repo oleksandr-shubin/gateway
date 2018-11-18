@@ -7,6 +7,7 @@ import VueSweetAlert2 from 'vue-sweetalert2';
 Vue.config.productionTip = false;
 
 Vue.component('empty-row', EmptyRow);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.use(VueSweetAlert2);
 

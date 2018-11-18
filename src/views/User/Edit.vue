@@ -70,7 +70,7 @@
     import Form from "../../mixins/Form";
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
     import userApi from "../../api/user";
-    import HasCompanies from "../../mixins/HasCompanies";
+    import HasCompanies from "../../mixins/HasCompanyList";
 
     export default {
         mixins: [Form, NotifiesSuccess, HasCompanies],

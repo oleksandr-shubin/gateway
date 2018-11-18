@@ -13,7 +13,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-if="users.length" v-for="user in users">
+                <tr v-if="isNotEmpty()" v-for="user in paginator.data" :key="user.id">
                     <td>{{ user.given_name }}</td>
                     <td>{{ user.family_name }}</td>
                     <td>{{ user.email }}</td>
@@ -35,9 +35,10 @@
                         </div>
                     </td>
                 </tr>
-                <empty-row v-if="!users.length" :colspan="5"></empty-row>
+                <empty-row v-if="isEmpty()" :colspan="5"></empty-row>
                 </tbody>
             </table>
+            <pagination :limit="2" :show-disabled="true" :data="paginator" @pagination-change-page="index"></pagination>
         </div>
         <router-link :to="{name: 'users-create'}" tag="button" class="btn btn-success">
             Add
@@ -49,33 +50,27 @@
     import userApi from '../../api/user';
     import DeletesModel from "../../mixins/DeletesModel";
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
+    import Paginable from "../../mixins/Paginable";
 
     export default {
-
-        mixins: [DeletesModel, NotifiesSuccess],
-
-        data() {
-            return {
-                users: [],
-            };
-        },
+        mixins: [DeletesModel, NotifiesSuccess, Paginable],
 
         created() {
             this.index();
         },
 
         methods: {
-            index() {
+            index(page = 1) {
                 userApi
-                    .index()
-                    .then(({data}) => this.users = data.data);
+                    .index(page)
+                    .then(({data}) => this.paginator = data);
             },
 
             destroy(user) {
                 userApi
                     .destroy(user)
                     .then(() => {
-                        this.index();
+                        this.index(this.findPageAfterDeletion());
                         this.notifySuccess();
                     });
             },

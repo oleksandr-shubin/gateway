@@ -49,7 +49,7 @@
                     <select id="company_id" v-model="userData.company_id" class="custom-select"
                             :class="{ 'is-invalid': hasError('email') }" required>
 
-                        <option v-for="company in companies" :value="company.id">{{ company.name }}</option>
+                        <option v-for="company in companyList" :value="company.id">{{ company.name }}</option>
                     </select>
 
                     <span v-if="hasError('company_id')" class="invalid-feedback" role="alert">
@@ -70,11 +70,11 @@
     import userApi from '../../api/user';
     import Form from "../../mixins/Form";
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
-    import HasCompanies from "../../mixins/HasCompanies";
+    import HasCompanyList from "../../mixins/HasCompanyList";
 
     export default {
 
-        mixins: [Form, NotifiesSuccess, HasCompanies],
+        mixins: [Form, NotifiesSuccess, HasCompanyList],
 
         data() {
             return {
@@ -88,7 +88,7 @@
         },
 
         created() {
-            this.indexCompanies();
+            this.indexCompanyList();
         },
 
         methods: {
