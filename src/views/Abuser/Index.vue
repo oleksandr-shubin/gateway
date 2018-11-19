@@ -29,15 +29,15 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Quota</th>
-                    <th>Used</th>
+                    <th class="text-center">Quota</th>
+                    <th class="text-center">Used</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-if="companies.length" v-for="company in companies" :key="company.id">
                     <td>{{ company.name }}</td>
-                    <td>{{ company.quota }}</td>
-                    <td>{{ company.total_amount }}</td>
+                    <td class="text-right">{{ humaniseBytes(company.quota) }}</td>
+                    <td class="text-right">{{ humaniseBytes(company.total_amount) }}</td>
                 </tr>
                 <empty-row v-if="!companies.length" :colspan="3"></empty-row>
                 </tbody>
@@ -47,12 +47,13 @@
 </template>
 
 <script>
-    import months from '../../enums/Months';
+    import months from '../../data/Months';
     import Form from '../../mixins/Form';
     import reportApi from '../../api/report';
+    import HumanReadableBytes from "../../mixins/HumanReadableBytes";
 
     export default {
-        mixins: [Form],
+        mixins: [Form, HumanReadableBytes],
 
         data() {
             return {

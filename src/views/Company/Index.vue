@@ -6,14 +6,14 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Quota</th>
+                    <th class="text-center">Quota</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-if="isNotEmpty()" v-for="company in paginator.data" :key="company.id">
                     <td>{{ company.name }}</td>
-                    <td>{{ company.quota }}</td>
+                    <td class="text-right">{{ humaniseBytes(company.quota) }}</td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -47,9 +47,10 @@
     import DeletesModel from '../../mixins/DeletesModel';
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
     import Paginable from "../../mixins/Paginable";
+    import HumanReadableBytes from "../../mixins/HumanReadableBytes";
 
     export default {
-        mixins: [DeletesModel, NotifiesSuccess, Paginable],
+        mixins: [DeletesModel, NotifiesSuccess, Paginable, HumanReadableBytes],
 
         created() {
             this.index();
