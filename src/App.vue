@@ -36,6 +36,8 @@
     </div>
 </template>
 
-<style>
-
+<style scoped>
+    .router-link-active .nav-link {
+        color: #007bff;
+    }
 </style>
