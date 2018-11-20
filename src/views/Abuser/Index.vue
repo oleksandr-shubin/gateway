@@ -49,7 +49,7 @@
 <script>
     import months from '../../data/Months';
     import Form from '../../mixins/Form';
-    import reportApi from '../../api/report';
+    import reportApi from '../../api/abuserCompany';
     import HumanReadableBytes from "../../mixins/HumanReadableBytes";
 
     export default {
