@@ -2,7 +2,7 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Create user</h2>
 
-        <form @submit.prevent="store()" method="POST">
+        <form id="user-create-form" @submit.prevent="store()" method="POST">
             <div class="form-group row">
                 <label for="given_name" class="col-sm-2 col-form-label text-md-left">Given name</label>
 
@@ -79,9 +79,9 @@
         data() {
             return {
                 userData: {
-                    given_name: '',
-                    family_name: '',
-                    email: '',
+                    id: '',
+                    name: '',
+                    quota: '',
                     company_id: null,
                 },
             };
@@ -112,9 +112,9 @@
 
             reset() {
                 this.userData = {
-                    given_name: '',
-                    family_name: '',
-                    email: '',
+                    id: '',
+                    name: '',
+                    quota: '',
                     company_id: null,
                 };
             }

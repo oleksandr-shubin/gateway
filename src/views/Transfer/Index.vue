@@ -1,7 +1,7 @@
 <template>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Transfers</h2>
-        <button @click.prevent="generate" class="btn btn-success" :disabled="loading">
+        <button id="generate-data-button" @click.prevent="generate" class="btn btn-success" :disabled="loading">
             <template v-if="loading">
                 <i v-if="loading" class="fas fa-sync fa-spin"></i>
                 Generating data
@@ -15,8 +15,11 @@
 
 <script>
     import transferDataApi from '../../api/transferData';
+    import NotifiesSuccess from "../../mixins/NotifiesSuccess";
 
     export default {
+        mixins: [NotifiesSuccess],
+
         data() {
             return {
                 loading: false,
@@ -29,7 +32,10 @@
 
                 transferDataApi
                     .update()
-                    .then(() => this.loading = false);
+                    .then(() => {
+                        this.notifySuccess();
+                        this.loading = false;
+                    });
             },
         },
     }

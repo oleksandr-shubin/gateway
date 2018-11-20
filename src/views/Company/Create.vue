@@ -2,7 +2,7 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Create company</h2>
 
-        <form @submit.prevent="store()" method="POST">
+        <form id="company-create-form" @submit.prevent="store()" method="POST">
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label text-md-left">Name</label>
 

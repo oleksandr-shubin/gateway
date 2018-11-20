@@ -2,7 +2,7 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Edit company</h2>
 
-        <form @submit.prevent="update()" method="POST">
+        <form id="company-edit-form" @submit.prevent="update()" method="POST">
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label text-md-left">Name</label>
 

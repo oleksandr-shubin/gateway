@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import abuserCompanyCustomerApi from '../../api/abuserCompanyCustomer';
+    import abuserCompanyUserApi from '../../api/abuserCompanyUser';
     import HumanReadableBytes from '../../mixins/HumanReadableBytes';
     import Months from '../../data/Months';
 
@@ -50,7 +50,7 @@
 
         methods: {
             index() {
-                abuserCompanyCustomerApi
+                abuserCompanyUserApi
                     .index(this.$route.params.id, this.$route.params.month)
                     .then(({data}) => {
                         this.users = data.data;

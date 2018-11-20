@@ -2,7 +2,7 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Abuser Companies</h2>
 
-        <form @submit.prevent="index" method="POST">
+        <form id="index-abuser-companies-form" @submit.prevent="index" method="POST">
             <div class="form-group row">
                 <label for="month" class="col-sm-2 col-form-label text-md-left">Month</label>
 
