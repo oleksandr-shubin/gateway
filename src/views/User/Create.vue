@@ -47,7 +47,7 @@
 
                 <div class="col-md-4">
                     <select id="company_id" v-model="userData.company_id" class="custom-select"
-                            :class="{ 'is-invalid': hasError('email') }" required>
+                            :class="{ 'is-invalid': hasError('company_id') }" required>
 
                         <option v-for="company in companyList" :value="company.id">{{ company.name }}</option>
                     </select>
