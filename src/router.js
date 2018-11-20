@@ -6,7 +6,8 @@ import UsersEdit from './views/User/Edit.vue';
 import Companies from './views/Company/Index.vue';
 import CompaniesCreate from './views/Company/Create.vue';
 import CompaniesEdit from './views/Company/Edit.vue';
-import Abusers from './views/Abuser/Index.vue';
+import AbuserCompanies from './views/AbuserCompanies/Index.vue';
+import AbuserCompanyUsers from './views/AbuserCompanyUsers/Index.vue';
 import Transfers from './views/Transfer/Index.vue';
 
 Vue.use(Router);
@@ -58,9 +59,15 @@ export default new Router({
         },
 
         {
-            path: '/abusers',
-            name: 'abusers',
-            component: Abusers,
+            path: '/abusers/companies',
+            name: 'abuser-companies',
+            component: AbuserCompanies,
+        },
+
+        {
+            path: '/abusers/companies/:id/month/:month/users',
+            name: 'abuser-company-users',
+            component: AbuserCompanyUsers,
         },
     ]
 })

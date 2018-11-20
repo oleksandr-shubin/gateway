@@ -49,7 +49,7 @@
                     <select id="company_id" v-model="user.company_id" class="custom-select"
                             :class="{ 'is-invalid': hasError('company_id') }" required>
 
-                        <option v-for="company in companies" :value="company.id">{{ company.name }}</option>
+                        <option v-for="company in companyList" :value="company.id">{{ company.name }}</option>
                     </select>
 
                     <span v-if="hasError('company_id')" class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
 
         created() {
             this.show(this.$route.params.id);
-            this.indexCompanies();
+            this.indexCompanyList();
         },
 
         methods: {

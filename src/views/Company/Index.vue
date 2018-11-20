@@ -14,7 +14,7 @@
                 <tr v-if="isNotEmpty()" v-for="company in paginator.data" :key="company.id">
                     <td>{{ company.name }}</td>
                     <td class="text-right">{{ humaniseBytes(company.quota) }}</td>
-                    <td>
+                    <td class="text-right">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

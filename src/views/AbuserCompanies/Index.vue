@@ -1,6 +1,6 @@
 <template>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <h2>Abusers</h2>
+        <h2>Abuser Companies</h2>
 
         <form @submit.prevent="index" method="POST">
             <div class="form-group row">
@@ -37,7 +37,11 @@
                 <tr v-if="companies.length" v-for="company in companies" :key="company.id">
                     <td>{{ company.name }}</td>
                     <td class="text-right">{{ humaniseBytes(company.quota) }}</td>
-                    <td class="text-right">{{ humaniseBytes(company.total_amount) }}</td>
+                    <td class="text-right">
+                        <router-link :to="{name: 'abuser-company-users', params: { id: company.id, month: currentMonth }}">
+                            {{ humaniseBytes(company.total_amount) }}
+                        </router-link>
+                    </td>
                 </tr>
                 <empty-row v-if="!companies.length" :colspan="3"></empty-row>
                 </tbody>
@@ -49,7 +53,7 @@
 <script>
     import months from '../../data/Months';
     import Form from '../../mixins/Form';
-    import reportApi from '../../api/abuserCompany';
+    import abuserCompanyApi from '../../api/abuserCompany';
     import HumanReadableBytes from "../../mixins/HumanReadableBytes";
 
     export default {
@@ -59,6 +63,7 @@
             return {
                 months: {},
                 month: null,
+                currentMonth: null,
                 companies: [],
             };
         },
@@ -71,9 +76,12 @@
             index() {
                 this.clearCompanies();
 
-                reportApi
+                abuserCompanyApi
                     .index(this.month)
-                    .then(({data}) => this.companies = data)
+                    .then(({data}) => {
+                        this.currentMonth = this.month;
+                        this.companies = data;
+                    })
                     .catch((error) => {
                         this.errors = error.response.data.errors;
                     });

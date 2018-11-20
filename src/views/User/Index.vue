@@ -18,7 +18,7 @@
                     <td>{{ user.family_name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.company_name }}</td>
-                    <td>
+                    <td class="text-right">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

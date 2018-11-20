@@ -22,7 +22,7 @@
                                 Transfers
                             </a>
                         </router-link>
-                        <router-link to="/abusers" tag="li" class="nav-item">
+                        <router-link to="/abusers/companies" tag="li" class="nav-item">
                             <a class="nav-link">
                                 <i class="fas fa-exclamation-circle"></i>
                                 Abusers
