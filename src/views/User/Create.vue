@@ -107,7 +107,7 @@
 
             cancel() {
                 this.reset();
-                this.$router.go(-1);
+                this.$router.push({name: 'users'});
             },
 
             reset() {
