@@ -43,7 +43,14 @@
             </div>
 
             <div class="form-group row">
-                <label for="company_id" class="col-sm-2 col-form-label text-md-left">Company</label>
+                <label for="company_id" class="col-sm-2 col-form-label text-md-left">
+                    <template v-if="companyList.length">
+                        Company
+                    </template>
+                    <template v-else>
+                        <span class="text-danger">Company list is empty. Please create company first!</span>
+                    </template>
+                </label>
 
                 <div class="col-md-4">
                     <select id="company_id" v-model="userData.company_id" class="custom-select"
