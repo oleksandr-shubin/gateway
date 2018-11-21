@@ -5,7 +5,7 @@
 npm install
 ```
 
-### Create and set env file
+### Create and set back-end api url in env file
 ```
 cp .env.example .env.local
 ```
