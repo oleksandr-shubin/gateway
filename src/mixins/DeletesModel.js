@@ -10,7 +10,7 @@ export default {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then(res => {
-                if (res) {
+                if (res.hasOwnProperty('value') && res.value === true) {
                     callback();
                 }
             })
