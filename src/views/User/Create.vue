@@ -66,7 +66,7 @@
             </div>
 
             <div class="btn-toolbar" role="toolbar" aria-label="toolbar">
-                <button type="submit" class="btn btn-success mr-2">Add</button>
+                <button type="submit" class="btn btn-success mr-2">Save</button>
                 <button @click.prevent="cancel()" type="button" class="btn btn-secondary">Cancel</button>
             </div>
         </form>

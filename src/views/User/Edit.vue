@@ -42,24 +42,8 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label for="company_id" class="col-sm-2 col-form-label text-md-left">Company</label>
-
-                <div class="col-md-4">
-                    <select id="company_id" v-model="user.company_id" class="custom-select"
-                            :class="{ 'is-invalid': hasError('company_id') }" required>
-
-                        <option v-for="company in companyList" :value="company.id">{{ company.name }}</option>
-                    </select>
-
-                    <span v-if="hasError('company_id')" class="invalid-feedback" role="alert">
-                        <strong>{{ firstError('company_id') }}</strong>
-                    </span>
-                </div>
-            </div>
-
             <div class="btn-toolbar" role="toolbar" aria-label="toolbar">
-                <button type="submit" class="btn btn-success mr-2">Add</button>
+                <button type="submit" class="btn btn-success mr-2">Update</button>
                 <button @click.prevent="cancel()" type="button" class="btn btn-secondary">Cancel</button>
             </div>
         </form>
@@ -70,10 +54,9 @@
     import Form from "../../mixins/Form";
     import NotifiesSuccess from "../../mixins/NotifiesSuccess";
     import userApi from "../../api/user";
-    import HasCompanies from "../../mixins/HasCompanyList";
 
     export default {
-        mixins: [Form, NotifiesSuccess, HasCompanies],
+        mixins: [Form, NotifiesSuccess],
 
         data() {
             return {
@@ -81,14 +64,12 @@
                     id: null,
                     name: '',
                     quota: '',
-                    company_id: null,
                 },
             };
         },
 
         created() {
             this.show(this.$route.params.id);
-            this.indexCompanyList();
         },
 
         methods: {

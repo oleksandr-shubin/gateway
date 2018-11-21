@@ -6,10 +6,9 @@ import WrapperHelper from '../WrapperHelper';
 import sinon from 'sinon';
 import expect from 'expect';
 
-describe('Edit', () => {
+describe ('Edit', () => {
     let userId = 1;
     let updateEndpoint = process.env.VUE_APP_CORE_ENDPOINT + `/api/customers/${userId}`;
-    let companyId = 1;
     let wrapper;
     let wrapperHelper;
 
@@ -33,7 +32,7 @@ describe('Edit', () => {
 
         wrapper.vm.notifySuccess = sinon.spy();
 
-        wrapper.setData({ companyList: [{id: companyId}], user: {id: userId} });
+        wrapper.setData({ user: {id: userId} });
     });
 
     afterEach(() => {
@@ -48,7 +47,6 @@ describe('Edit', () => {
         wrapperHelper.type("John", "#given_name");
         wrapperHelper.type("Smith", "#family_name");
         wrapperHelper.type("john.smith@gmail.com", "#email");
-        wrapperHelper.select(0, '#company_id');
         wrapperHelper.submit("#user-edit-form");
 
         moxios.wait(() => {
@@ -61,7 +59,6 @@ describe('Edit', () => {
         let givenNameError = 'Invalid given name';
         let familyNameError = 'Invalid family name';
         let emailError = 'Invalid email';
-        let companyError = 'Invalid company';
 
         moxios.stubRequest(updateEndpoint, {
             status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -76,9 +73,6 @@ describe('Edit', () => {
                     email: [
                         emailError,
                     ],
-                    company_id: [
-                        companyError,
-                    ],
                 },
             }
         });
@@ -89,7 +83,6 @@ describe('Edit', () => {
             wrapperHelper.see(givenNameError);
             wrapperHelper.see(familyNameError);
             wrapperHelper.see(emailError);
-            wrapperHelper.see(companyError);
             expect(wrapper.vm.notifySuccess.called).toBe(false);
             done();
         });
